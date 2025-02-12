@@ -18,6 +18,7 @@ namespace Mission06_BoudJacob.Models
         [Required]
         public string Rating { get; set; }
 
+        //Not Required fields
         public bool Edited { get; set; }
 
         public string LentTo { get; set; }

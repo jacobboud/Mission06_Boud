@@ -13,6 +13,7 @@ namespace Mission06_BoudJacob.Controllers
             _context = temp;
         }
 
+        //Routes
         public IActionResult Index()
         {
             return View();
