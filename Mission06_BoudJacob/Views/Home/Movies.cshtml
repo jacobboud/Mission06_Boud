@@ -4,9 +4,18 @@
 
 <form method="post">
 
+    <input type="hidden" asp-for="MovieId" />
+
     <!--User Form-->
     <label asp-for="Category">Category:</label>
-    <input asp-for="Category" />
+    <select asp-for="CategoryId">
+        <option value="">Select a Category</option>
+        <!-- List all Category options -->
+        @foreach (Category c in ViewBag.Categories)
+        {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+        }
+    </select>
     <br />
     <label asp-for="Title">Title</label>
     <input asp-for="Title" />
@@ -19,10 +28,10 @@
     <br />
     <label asp-for="Rating">Rating:</label>
     <select asp-for="Rating">
-        <option value="g">G</option>
-        <option value="pg">PG</option>
-        <option value="pg13">PG-13</option>
-        <option value="r">R</option>
+        <option value="G">G</option>
+        <option value="PG">PG</option>
+        <option value="PG-13">PG-13</option>
+        <option value="R">R</option>
     </select>
     <br />
     <label asp-for="Edited">Edited</label>
@@ -30,8 +39,16 @@
         <option value="true">Yes</option>
         <option value="false">No</option>
     </select>
+    <br />
     <label asp-for="LentTo">Lent To:</label>
     <input asp-for="LentTo" />
+    <br />
+    <label asp-for="CopiedToPlex">Copied To Plex</label>
+    <select asp-for="CopiedToPlex">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    <br />
     <label asp-for="Notes">Notes:</label>
     <input asp-for="Notes" maxlength="25" />
     <br />
@@ -39,5 +56,8 @@
     <br />
 
     <button type="submit">Submit Movie</button>
+
+    <!-- Send error messages -->
+    <div asp-validation-summary="All"></div>
 
 </form>

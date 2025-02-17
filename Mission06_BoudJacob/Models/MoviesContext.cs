@@ -10,5 +10,6 @@ namespace Mission06_BoudJacob.Models
         }
 
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

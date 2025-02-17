@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mission06_BoudJacob.Models
 {
@@ -6,24 +7,33 @@ namespace Mission06_BoudJacob.Models
     {
         [Key]
         [Required]
-        public int MovieID { get; set; }
-        [Required]
-        public string Category { get; set; }
-        [Required]
+        public int MovieId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public int? CategoryId { get; set; }
+
+        public Category? Category { get; set; }
+
+        [Required(ErrorMessage = "Sorry, you need to enter a movie title.")]
         public string Title { get; set; }
-        [Required]
+
+        // Limit year to a realistic range
+        [Range(1888, 3000, ErrorMessage = "Sorry, you need to enter a valid year.")]
         public string Year { get; set; }
-        [Required]
-        public string Director { get; set; }
-        [Required]
-        public string Rating { get; set; }
 
-        //Not Required fields
+        public string? Director { get; set; }
+
+        public string? Rating { get; set; }
+
+        [Required(ErrorMessage = "Sorry, you need to enter if this has been edited.")]
         public bool Edited { get; set; }
+        
+        public string? LentTo { get; set; }
 
-        public string LentTo { get; set; }
+        [Required(ErrorMessage = "Sorry, you need to enter if this has been copied to Plex.")]
+        public bool CopiedToPlex { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
     }
 }
