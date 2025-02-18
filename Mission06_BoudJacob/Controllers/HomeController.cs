@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission06_BoudJacob.Models;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -56,7 +57,7 @@ namespace Mission06_BoudJacob.Controllers
         public IActionResult MovieList()
         {
             //Linq
-            var movies = _context.Movies.OrderBy(x => x.Title).ToList();
+            var movies = _context.Movies.Include(x => x.Category).OrderBy(x => x.Title).ToList();
 
             return View(movies);
         }
